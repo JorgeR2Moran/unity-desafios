@@ -12,6 +12,9 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private Vector3 direction = Vector3.forward;
     private Dictionary<KeyCode, Vector3> movementList =  new Dictionary<KeyCode, Vector3>();
     [SerializeField] private float cameraAxisX = 0f;
+    [SerializeField] private Transform raycastPoint;
+    [SerializeField] private float rayDistance = 3f;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -40,7 +43,9 @@ public class PlayerMovement : MonoBehaviour
     }
 
     private void Movement(Vector3 direction){
-        transform.Translate(velocity * direction * Time.deltaTime);
+        if(!GameManager.HitWall){
+            transform.Translate(velocity * direction * Time.deltaTime);
+        }
     }
 
     /*private void Damage(float damageInflicted){
@@ -58,5 +63,31 @@ public class PlayerMovement : MonoBehaviour
         //transform.rotation = Quaternion.Euler(0, 0.1f * cameraAxisX, 0); //el valor 1f lo hace mas sensible al movimiento del mouse.
         Quaternion newRotetion = Quaternion.Euler(0, 2f * cameraAxisX, 0);
         transform.rotation = Quaternion.Lerp(transform.rotation, newRotetion, 2f * Time.deltaTime);
+    }
+
+    private void FixedUpdate()
+    {
+        PlayerRaycast();
+    }
+
+    private void PlayerRaycast()
+    {
+        RaycastHit hit;
+        if (Physics.Raycast(raycastPoint.position, raycastPoint.TransformDirection(Vector3.forward), out hit, rayDistance))
+        {
+            if (hit.transform.CompareTag("Wall")){
+                GameManager.HitWall = true;
+                Debug.Log("Hit Wall");
+            }
+        }else{
+            GameManager.HitWall = false;
+        }
+    }
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.blue;
+        Vector3 direction = raycastPoint.TransformDirection(Vector3.forward) * rayDistance;
+        Gizmos.DrawRay(raycastPoint.position, direction);
     }
 }
