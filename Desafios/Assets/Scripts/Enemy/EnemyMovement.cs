@@ -45,6 +45,7 @@ public class EnemyMovement : MonoBehaviour
         if (Physics.Raycast(raycastPoint.position, raycastPoint.TransformDirection(Vector3.forward), out hit, rayDistance))
         {
             if (hit.transform.CompareTag("Player")){
+                GameManager.Score--;
                 GameManager.HitCar = true;
                 Debug.Log("Hit Car");
                 Destroy(gameObject);

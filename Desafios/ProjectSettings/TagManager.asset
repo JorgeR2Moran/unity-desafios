@@ -5,6 +5,9 @@ TagManager:
   serializedVersion: 2
   tags:
   - Wall
+  - FireTruck
+  - RaceCar
+  - SUV
   layers:
   - Default
   - TransparentFX

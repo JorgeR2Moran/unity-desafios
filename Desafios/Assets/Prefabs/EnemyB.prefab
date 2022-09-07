@@ -43,7 +43,7 @@ GameObject:
   - component: {fileID: 3270001308850105012}
   m_Layer: 0
   m_Name: EnemyB
-  m_TagString: Untagged
+  m_TagString: RaceCar
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
