@@ -20,9 +20,9 @@ public class EnemyManager : MonoBehaviour
     private void CreateEnemy(){
         int random =  Random.Range(0, enemyList.Count);
         GameObject enemy = Instantiate(enemyList[random], new Vector3(playerTransform.position.x, 0, playerTransform.position.z * -1), playerTransform.rotation);
-        enemy.GetComponent<EnemyMovement>().PlayerTransform = playerTransform;
+        enemy.GetComponent<Enemy>().PlayerTransform = playerTransform;
 
-        HUDManager.instance.SetSelectedText(enemy.gameObject.tag);
+        //HUDManager.instance.SetSelectedText(enemy.gameObject.tag);
         Debug.Log("LAST ENEMY: " + enemy.gameObject.tag);
     }
 }

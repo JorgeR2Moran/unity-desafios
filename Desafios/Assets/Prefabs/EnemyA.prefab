@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4943205681426552642}
-  - component: {fileID: 8560044869663592020}
+  - component: {fileID: 7697832926975114029}
   m_Layer: 0
   m_Name: EnemyA
   m_TagString: FireTruck
@@ -35,7 +35,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &8560044869663592020
+--- !u!114 &7697832926975114029
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -44,15 +44,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 3026248219525312299}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 575f412e23328e148878ca1dc7db5163, type: 3}
+  m_Script: {fileID: 11500000, guid: 6cfe7cb6821deb14590daeb0aa078061, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 2
-  enemyType: 1
   playerTransform: {fileID: 0}
-  enemySeparation: 2
   raycastPoint: {fileID: 9149700588984262868}
-  rayDistance: 3
+  enemyData: {fileID: 11400000, guid: 56e5769fe2f965445b571214a5c873f3, type: 2}
+  enemyChaserData: {fileID: 11400000, guid: cae3b51f8e8f88943878eb6584e0a710, type: 2}
 --- !u!1 &8773674122012042314
 GameObject:
   m_ObjectHideFlags: 0
