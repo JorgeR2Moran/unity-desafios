@@ -1,13 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 public class Enemy : MonoBehaviour
-{
-    
+{    
     [SerializeField] private Transform playerTransform;
     [SerializeField] private Transform raycastPoint;
     [SerializeField] private EnemyData enemyData;
+    public static event Action OnEnemyDestroy;
 
     public Transform PlayerTransform { get => playerTransform; set => playerTransform = value; }
 
@@ -24,7 +25,8 @@ public class Enemy : MonoBehaviour
             if (hit.transform.CompareTag("Player")){
                 GameManager.Score--;
                 GameManager.HitCar = true;
-                Debug.Log("Hit Car");
+                Debug.Log("OnEnemyDestroy - Called - EnemyMovement");
+                OnEnemyDestroy?.Invoke();
                 Destroy(gameObject);
             }
         }else{
@@ -38,9 +40,7 @@ public class Enemy : MonoBehaviour
         Quaternion newRotetion = Quaternion.LookRotation(playerDirection);
         transform.rotation = Quaternion.Lerp(transform.rotation, newRotetion, 2f * Time.deltaTime);
         //transform.LookAt(playerTransform);
-    }
-
-    
+    }   
 
     private void OnDrawGizmos()
     {

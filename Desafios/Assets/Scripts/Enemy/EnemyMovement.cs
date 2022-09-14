@@ -5,7 +5,7 @@ using UnityEngine;
 public class EnemyMovement : MonoBehaviour
 {
     private enum EnemyType{Peeper, Stalker};
-    [SerializeField][Range(1f, 10f)] private float speed = 2f;
+    [SerializeField][Range(1f, 10f)] private float speed = 0.5f;
     [SerializeField] private EnemyType enemyType = EnemyType.Peeper;
     [SerializeField] private Transform playerTransform;
     [SerializeField] private float enemySeparation = 2f;
@@ -13,6 +13,7 @@ public class EnemyMovement : MonoBehaviour
     [SerializeField] private float rayDistance = 3f;
 
     public Transform PlayerTransform { get => playerTransform; set => playerTransform = value; }
+    public float Speed { get => speed; set => speed = value; }
 
     // Start is called before the first frame update
     void Start()
@@ -47,7 +48,7 @@ public class EnemyMovement : MonoBehaviour
             if (hit.transform.CompareTag("Player")){
                 GameManager.Score--;
                 GameManager.HitCar = true;
-                Debug.Log("Hit Car");
+                EnemyManager.enemyNumber++;
                 Destroy(gameObject);
             }
         }else{
@@ -70,7 +71,7 @@ public class EnemyMovement : MonoBehaviour
             Vector3 direction = PlayerTransform.position - transform.position;
             if(direction.magnitude > enemySeparation)
             {
-                transform.position += direction.normalized * speed * Time.deltaTime;
+                transform.position += direction.normalized * Speed * Time.deltaTime;
             }
         }
     }

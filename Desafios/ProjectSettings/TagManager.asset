@@ -8,6 +8,7 @@ TagManager:
   - FireTruck
   - RaceCar
   - SUV
+  - Bullet
   layers:
   - Default
   - TransparentFX

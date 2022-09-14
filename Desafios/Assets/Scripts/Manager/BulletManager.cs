@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
-public class WallManager : MonoBehaviour
+public class BulletManager : MonoBehaviour
 {
     /*[SerializeField] private float triggerTeleportTime = 2f;
     [SerializeField] private Transform nextPortal;
@@ -23,13 +23,13 @@ public class WallManager : MonoBehaviour
         timeInPortal = 0;
     }*/
 
-    [SerializeField] private UnityEvent OnTriggerOutOfBounds;
+    [SerializeField] private UnityEvent OnTriggerSpeedUp;
 
-    private void OnTriggerEnter(Collider other)
-    {
+    private void OnTriggerEnter(Collider other){
         if(other.CompareTag("Player")){
-            Debug.Log("OnTriggerOutOfBounds - Called - WallManager");
-            OnTriggerOutOfBounds?.Invoke();
+            Debug.Log("OnTriggerSpeedUp - Called - BulletManager");
+            OnTriggerSpeedUp?.Invoke();
+            Destroy(gameObject);
         }
     }
 }
